@@ -1,0 +1,42 @@
+.student-card {
+  margin: 16px;
+  max-width: 400px;
+  position: relative;
+  
+  .hide-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: #d32f2f;
+    }
+  }
+
+  mat-card-title {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: #ffffff;
+    padding-right: 80px; 
+  }
+
+  mat-card-subtitle {
+    font-size: 0.9em;
+    color: #a8a8a8;
+    margin-top: 8px;
+  }
+
+  mat-card-content {
+    p {
+      margin: 8px 0;
+      font-size: 0.95em;
+      color: #555;
+    }
+  }
+}

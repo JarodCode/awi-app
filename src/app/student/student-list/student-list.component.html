@@ -1,0 +1,12 @@
+<app-student-card
+  *ngFor="let student of students"
+  [firstname]="student.firstname"
+  [name]="student.name"
+  [program]="student.program"
+  [promo]="student.promo"
+  [registrationPrice]="student.registrationPrice"
+  [registrationDate]="student.registrationDate"
+  [isVisible]="student.isVisible"
+
+  (remove)="onDelete($event)"
+/>

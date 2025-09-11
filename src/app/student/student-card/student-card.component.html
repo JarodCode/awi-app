@@ -1,0 +1,14 @@
+<mat-card class ="student-card" [style.display]="!isVisible() ? 'none' : 'block'">
+    <button class="hide-button" (click)="remove.emit(firstname())">Hide</button>
+    <mat-card-header>
+        <mat-card-title>
+            {{ this.firstname() }} {{ this.name() | uppercase }}
+        </mat-card-title>
+        <mat-card-subtitle>
+            Filière : {{ this.program() }}{{ this.promo() }}
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Date d'inscription : {{ this.registrationDate() | date : 'longDate' }}</p>
+        <p>Frais : {{ this.registrationPrice() | currency : 'EUR' }}</p>
+    </mat-card-content>
