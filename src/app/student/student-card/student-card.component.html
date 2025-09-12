@@ -1,14 +1,26 @@
-<mat-card class ="student-card" [style.display]="!isVisible() ? 'none' : 'block'">
-    <button class="hide-button" (click)="remove.emit(firstname())">Hide</button>
-    <mat-card-header>
-        <mat-card-title>
-            {{ this.firstname() }} {{ this.name() | uppercase }}
-        </mat-card-title>
-        <mat-card-subtitle>
-            Filière : {{ this.program() }}{{ this.promo() }}
-        </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <p>Date d'inscription : {{ this.registrationDate() | date : 'longDate' }}</p>
-        <p>Frais : {{ this.registrationPrice() | currency : 'EUR' }}</p>
-    </mat-card-content>
+@if(this.isVisible()){
+    <mat-card class ="student-card">
+        <button class="hide-button" (click)="remove.emit(student().id)">Hide</button>
+        <mat-card-header>
+            <mat-card-subtitle>
+                @if(this.student().registrationDate.getFullYear() < 2023){
+                    Alumni
+                } @else if(2023 <= this.student().registrationDate.getFullYear() && this.student().registrationDate.getFullYear() <= 2024){
+                    Student
+                } @else {
+                    New Subsciber
+                }
+            </mat-card-subtitle>
+            <mat-card-title>
+                {{ this.student().firstname }} {{ this.student().name | uppercase }}
+            </mat-card-title>
+            <mat-card-subtitle>
+                Filière : {{ this.student().program }}{{ this.student().promo }}
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>Date d'inscription : {{ this.student().registrationDate | date : 'longDate' }}</p>
+            <p>Frais : {{ this.student().registrationPrice | currency : 'EUR' }}</p>
+        </mat-card-content>
+    </mat-card>
+}

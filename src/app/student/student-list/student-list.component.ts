@@ -12,38 +12,38 @@ export class StudentListComponent {
 
   students = [
     {
+      id: 1,
       firstname: 'Bruno',
       name: 'Marcel',
       program: 'DaMS',
       promo: 4,
       registrationPrice: 628.0,
-      registrationDate: new Date(),
-      isVisible: true,
+      registrationDate: new Date(2022, 0, 15),
     },
     {
+      id: 2,
       firstname: 'Jean',
       name: 'Maurice',
       program: 'DaMS',
       promo: 4,
       registrationPrice: 628.0,
-      registrationDate: new Date(),
-      isVisible: true,
+      registrationDate: new Date(2024, 0, 15),
     },
     {
+      id: 3,
       firstname: 'Marie',
       name: 'Laure',
       program: 'DaMS',
       promo: 3,
       registrationPrice: 428.0,
       registrationDate: new Date(),
-      isVisible: true,
     }
   ];
 
-  onDelete(firstname: string) {
-    const student = this.students.find(s => s.firstname === firstname);
-    if (student) {
-      student.isVisible = false;
-    }
+  isVisible : boolean[] = [true, true, true]
+
+  onDelete(id: number) {
+    const studentIndex = this.students.findIndex(s => s.id === id);
+    this.isVisible[studentIndex] = false;
   }
 }

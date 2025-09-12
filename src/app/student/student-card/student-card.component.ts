@@ -1,6 +1,7 @@
 import { DatePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { MatCardModule } from '@angular/material/card'
+import { Student } from '../student';
 
 @Component({
   selector: 'app-student-card',
@@ -9,14 +10,9 @@ import { MatCardModule } from '@angular/material/card'
   styleUrl: './student-card.component.scss'
 })
 export class StudentCardComponent {
-  firstname = input.required<string>();
-  name = input<string>();
-  program = input<string>();
-  promo = input<number>();
-  registrationDate = input<Date>();
-  registrationPrice = input<number>();
+  student = input.required<Student>()
   isVisible = input<boolean>()
 
-  remove = output<string>()
+  remove = output<number>()
 
 }

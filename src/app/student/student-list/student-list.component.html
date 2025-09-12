@@ -1,12 +1,9 @@
-<app-student-card
-  *ngFor="let student of students"
-  [firstname]="student.firstname"
-  [name]="student.name"
-  [program]="student.program"
-  [promo]="student.promo"
-  [registrationPrice]="student.registrationPrice"
-  [registrationDate]="student.registrationDate"
-  [isVisible]="student.isVisible"
+@for (student of students; track student.id; let i = $index) {
+  <app-student-card
+  [student] = "student"
 
+  [isVisible] = "isVisible[i]"
+  
   (remove)="onDelete($event)"
-/>
+  />
+}
