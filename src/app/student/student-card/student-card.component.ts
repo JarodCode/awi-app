@@ -11,8 +11,7 @@ import { Student } from '../student';
 })
 export class StudentCardComponent {
   student = input.required<Student>()
-  isVisible = input<boolean>()
-
+  
   remove = output<number>()
 
 }

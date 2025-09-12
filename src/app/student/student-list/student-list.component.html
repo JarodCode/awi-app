@@ -1,8 +1,6 @@
 @for (student of students; track student.id; let i = $index) {
   <app-student-card
   [student] = "student"
-
-  [isVisible] = "isVisible[i]"
   
   (remove)="onDelete($event)"
   />

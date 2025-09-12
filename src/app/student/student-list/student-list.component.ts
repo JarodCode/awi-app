@@ -40,10 +40,7 @@ export class StudentListComponent {
     }
   ];
 
-  isVisible : boolean[] = [true, true, true]
-
   onDelete(id: number) {
-    const studentIndex = this.students.findIndex(s => s.id === id);
-    this.isVisible[studentIndex] = false;
+    this.students = this.students.filter(student => student.id !== id);
   }
 }
