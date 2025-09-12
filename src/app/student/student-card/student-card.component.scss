@@ -40,3 +40,21 @@
     }
   }
 }
+
+.highlight {
+  border: 3px solid #ffd700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  background: linear-gradient(135deg, #fff9c4 0%, #ffffff 100%);
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+  
+  mat-card-title {
+    color: #b8860b !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  mat-card-subtitle {
+    color: #8b7355 !important;
+    font-weight: 500;
+  }
+}
