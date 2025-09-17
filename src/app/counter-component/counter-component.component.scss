@@ -1,0 +1,22 @@
+.counter {
+  max-width: 300px;
+  margin: 20px;
+}
+
+.counter-display {
+  text-align: center;
+  margin-bottom: 20px;
+  color: aliceblue;
+}
+
+.count-value {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.counter-controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

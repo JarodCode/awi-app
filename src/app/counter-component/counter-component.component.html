@@ -1,0 +1,33 @@
+<mat-card class="counter">
+  <mat-card-content>
+    <div class="counter-display">
+      <span class="count-value">
+        {{ this.count() }}
+        @if(this.count() > 0){
+          Compteur positif
+        } @else {
+          Compteur nul ou négatif
+        }
+      </span>
+      <span class="count-value">{{ this.dcount() }} C'est le double!!!</span>
+    </div>
+    <div class="counter-controls">
+      <button mat-raised-button color="accent" (click)="decrement()">
+        <mat-icon>remove</mat-icon>
+        -1
+      </button>
+      <button mat-raised-button color="primary" (click)="increment()">
+        <mat-icon>add</mat-icon>
+        +1
+      </button>
+      <button mat-raised-button color="primary" (click)="increment5()">
+        <mat-icon>add</mat-icon>
+        +5
+      </button>
+      <button mat-stroked-button color="warn" (click)="reset()">
+        <mat-icon>refresh</mat-icon>
+        Reset
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
