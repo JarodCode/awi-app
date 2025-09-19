@@ -43,4 +43,28 @@ export class StudentListComponent {
   onDelete(id: number) {
     this.students = this.students.filter(student => student.id !== id);
   }
+
+  addStudent(
+    firstname: string, 
+    name: string, 
+    program: string, 
+    promo: number, 
+    registrationPrice: number
+  ) {
+    
+    const newId = Math.max(...this.students.map(s => s.id)) + 1;
+    
+    const newStudent = {
+      id: newId,
+      firstname: firstname.trim(),
+      name: name.trim(),
+      program: program.trim(),
+      promo: promo,
+      registrationPrice: registrationPrice,
+      registrationDate: new Date()
+    };
+
+    this.students.push(newStudent);
+  }
+
 }
