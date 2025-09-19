@@ -1,4 +1,3 @@
-<!-- Form to add new student -->
 <div class="add-student-form">
   <h3>Ajouter un nouvel étudiant</h3>
   <div class="form-row">
@@ -28,12 +27,16 @@
   </div>
 </div>
 
-<!-- Display students -->
 <div class="student-list">
-  @for (student of students; track student.id) {
+  @for (student of students(); track student.id) {
     <app-student-card 
       [student]="student" 
       (remove)="onDelete($event)">
     </app-student-card>
   }
+</div>
+
+<div class="logged-user">
+  <h4>Changer de nom</h4>
+<button class="change-button" (click)="this.changeUsername()">Devient Bob</button>
 </div>

@@ -1,5 +1,5 @@
 import { DatePipe, UpperCasePipe, CurrencyPipe } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card'
 import { Student } from '../student';
 
@@ -13,5 +13,4 @@ export class StudentCardComponent {
   student = input.required<Student>()
   
   remove = output<number>()
-
 }

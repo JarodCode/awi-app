@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { StudentCardComponent } from '../student-card/student-card.component';
 import { CommonModule } from '@angular/common';
+import { Student } from '../student';
 
 @Component({
   selector: 'app-student-list',
@@ -10,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class StudentListComponent {
 
-  students = [
+  students = signal<Student[]>([
     {
       id: 1,
       firstname: 'Bruno',
@@ -38,11 +39,16 @@ export class StudentListComponent {
       registrationPrice: 428.0,
       registrationDate: new Date(),
     }
-  ];
+  ]);
 
   onDelete(id: number) {
-    this.students = this.students.filter(student => student.id !== id);
+  const studentToDel = this.students().find(student => student.id === id);
+  
+  if (studentToDel) {
+    this.students.set(this.students().filter(student => student.id !== id));
+    this.delStudent.set(studentToDel);
   }
+}
 
   addStudent(
     firstname: string, 
@@ -52,7 +58,7 @@ export class StudentListComponent {
     registrationPrice: number
   ) {
     
-    const newId = Math.max(...this.students.map(s => s.id)) + 1;
+    const newId = Math.max(...this.students().map(s => s.id)) + 1;
     
     const newStudent = {
       id: newId,
@@ -64,7 +70,26 @@ export class StudentListComponent {
       registrationDate: new Date()
     };
 
-    this.students.push(newStudent);
+    this.students.set([...this.students(), newStudent]);  
+  }
+
+  username = signal('Alice')
+  delStudent = signal<Student | null>(null)
+
+  constructor() {
+    effect(() => {
+      console.log('Utilisateur courant : ', this.username());
+    });
+    effect(() => {
+      console.log("Nombre d'étudiants et étudiants : ", this.students().length)
+    })
+    effect(() => {
+      console.log("Etudiant.e suprimé.e : ", this.delStudent()?.name, this.delStudent()?.firstname)
+    })
+  }
+
+  changeUsername(){
+    this.username.set('Bob')
   }
 
 }
