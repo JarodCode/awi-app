@@ -42,13 +42,13 @@ export class StudentListComponent {
   ]);
 
   onDelete(id: number) {
-  const studentToDel = this.students().find(student => student.id === id);
+    const studentToDel = this.students().find(student => student.id === id);
   
-  if (studentToDel) {
-    this.students.set(this.students().filter(student => student.id !== id));
-    this.delStudent.set(studentToDel);
+    if (studentToDel) {
+      this.students.set(this.students().filter(student => student.id !== id));
+      this.delStudent.set(studentToDel);
+    }
   }
-}
 
   addStudent(
     firstname: string, 
