@@ -28,15 +28,10 @@
 </div>
 
 <div class="student-list">
-  @for (student of students(); track student.id) {
+  @for (student of svc.students(); track student.id) {
     <app-student-card 
       [student]="student" 
       (remove)="onDelete($event)">
     </app-student-card>
   }
-</div>
-
-<div class="logged-user">
-  <h4>Changer de nom</h4>
-<button class="change-button" (click)="this.changeUsername()">Devient Bob</button>
 </div>
