@@ -1,0 +1,15 @@
+<mat-card>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <input type="text" formControlName="name"
+        placeholder="Nom" />
+        <input type="text" formControlName="firstname"
+        placeholder="Prénom" />
+        <input type="text" formControlName="program"
+        placeholder="Programme" />
+        <input type="number" formControlName="promo"
+        placeholder="Promo" />
+        <input type="number" formControlName="registrationPrice"
+        placeholder="Prix" />
+        <button type="submit">Enregistrer</button>
+    </form>
+</mat-card>

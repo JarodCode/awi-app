@@ -6,6 +6,7 @@ import { Student } from './student';
 })
 export class StudentService {
 
+  
   private readonly _students = signal<Student[]>([
     {
       id: 1,
@@ -34,24 +35,36 @@ export class StudentService {
       registrationPrice: 428.0,
       registrationDate: new Date(),
     }
-    ])
+  ])
 
-    readonly students = this._students.asReadonly()
+  private lastId = this._students().length;
+  
+  readonly students = this._students.asReadonly()
 
-    add(student: Student): void {
-      this._students.update(list => [...list, student]) 
+  add(studentData: any): void {
+    if ('id' in studentData && studentData.id !== undefined){
+      throw new Error('Student data should not contain an id. Use update() method for existing students.');
+    } else {
+      this.lastId++ 
+      const newStudent: Student = {
+        ...studentData,
+        id: this.lastId,
+        registrationDate: new Date(),
+      }
+      this._students.update(list => [...list, newStudent])
     }
+  }
 
-    remove(id: number): void {
-      this._students.update(list => list.filter(s => s.id !==id)) 
-    }
+  remove(id: number): void {
+    this._students.update(list => list.filter(s => s.id !==id)) 
+  }
 
-    update(partial: Partial<Student> & { id: number }): void {
-      this._students.update(list =>
-        list.map(s => (s.id === partial.id ? { ...s, ...partial } : s))
-      )
-    }
+  update(partial: Partial<Student> & { id: number }): void {
+    this._students.update(list =>
+      list.map(s => (s.id === partial.id ? { ...s, ...partial } : s))
+    )
+  }
 
-    findById(id: number): Student | undefined {
-      return this._students().find(s => s.id===id)}
+  findById(id: number): Student | undefined {
+    return this._students().find(s => s.id===id)}
 }

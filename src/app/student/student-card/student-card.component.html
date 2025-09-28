@@ -1,5 +1,4 @@
 <mat-card class ="student-card" [class.highlight]="this.student().registrationDate.getFullYear() == 2024">
-    <button class="hide-button" (click)="remove.emit(student().id)">Hide</button>
     <mat-card-header>
         <mat-card-subtitle>
             @switch(true) {
@@ -19,5 +18,9 @@
     <mat-card-content>
         <p>Date d'inscription : {{ this.student().registrationDate | date : 'longDate' }}</p>
         <p>Frais : {{ this.student().registrationPrice | currency : 'EUR' }}</p>
+        <p>Id : {{ this.student().id }}</p>
+        <div class="actions">
+            <ng-content></ng-content>
+        </div>
     </mat-card-content>
 </mat-card>

@@ -1,0 +1,18 @@
+@if (this.loggingService.entries().length === 0) {
+    <p>No logs</p> 
+}
+@else {
+    @for (entry of this.loggingService.entries(); track entry.id) {
+        @if (entry.scope) {
+            <p>{{entry.message}} in {{entry.scope}} at {{entry.timestamp}}</p>
+
+        } @else {
+            <p>{{entry.message}} at {{entry.timestamp}}</p>
+        }
+    }
+}
+<button (click)="this.loggingService.clear()">Clear Logs</button>
+
+<button (click)="this.loggingService.log('Action 1', 'Some scope')">Log action 1</button>
+
+<button (click)="this.loggingService.log('Action 2')">Log action 2</button>

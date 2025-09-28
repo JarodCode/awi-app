@@ -1,37 +1,17 @@
-<div class="add-student-form">
-  <h3>Ajouter un nouvel étudiant</h3>
-  <div class="form-row">
-    <input #firstnameInput type="text" placeholder="Prénom">
-    <input #nameInput type="text" placeholder="Nom">
-  </div>
-  <div class="form-row">
-    <input #programInput type="text" placeholder="Programme (ex: DaMS)">
-    <input #promoInput type="number" placeholder="Promo" min="1" max="5">
-  </div>
-  <div class="form-row">
-    <input #priceInput type="number" placeholder="Frais d'inscription" step="0.01" min="0">
-    <button (click)="addStudent(
-      firstnameInput.value, 
-      nameInput.value, 
-      programInput.value, 
-      +promoInput.value, 
-      +priceInput.value
-    ); 
-    firstnameInput.value=''; 
-    nameInput.value=''; 
-    programInput.value=''; 
-    promoInput.value=''; 
-    priceInput.value=''">
-      Ajouter l'étudiant
-    </button>
-  </div>
-</div>
+@if (!this.formHidden()) {
+  <app-student-form 
+    [selected]="this.selectedCard"
+    (addStudent)="addStudent($event)"/>
+}
 
+<h2> Liste des étudiants ({{ svc.students().length }})</h2>
+<button (click)="toggleNewStudentForm()">{{ showNewStudentForm() ? 'Cancel' : 'new Student' }}</button>
 <div class="student-list">
-  @for (student of svc.students(); track student.id) {
-    <app-student-card 
-      [student]="student" 
-      (remove)="onDelete($event)">
+  @for (student of this.svc.students(); track student.id) {
+    <app-student-card
+      [student]="student"
+      (remove)="this.svc.remove($event)"
+      (click)="changeSelection(student.id!)">
     </app-student-card>
   }
 </div>

@@ -1,5 +1,5 @@
 export interface Student {
-    id : number,
+    id : number | undefined
     firstname : string
     name : string
     program : string
