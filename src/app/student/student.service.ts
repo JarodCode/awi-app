@@ -55,8 +55,12 @@ export class StudentService {
     }
   }
 
-  remove(id: number): void {
-    this._students.update(list => list.filter(s => s.id !==id)) 
+  remove(id: number | undefined): void {
+    if (id == undefined) {
+      throw new Error('Cannot remove student: ID is undefined');
+    } else {
+      this._students.update(list => list.filter(s => s.id !==id)) 
+    }
   }
 
   update(partial: Partial<Student> & { id: number }): void {

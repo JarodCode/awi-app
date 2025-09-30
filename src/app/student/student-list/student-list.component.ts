@@ -33,8 +33,11 @@ export class StudentListComponent {
   }
 
   public changeSelection(id: number): void {
-    this.selectedCard.set(id);
-    this.showNewStudentForm.set(false); // Hide new student form when selecting a card
+    if (this.selectedCard() == id){
+      this.selectedCard.set(null);
+    } else {
+      this.selectedCard.set(id);
+    }
   }
 
   promote(id: number | undefined): void {
@@ -44,7 +47,6 @@ export class StudentListComponent {
   }
 
   onDelete(id: number | undefined): void {
-    if (id === undefined) return;
     this.svc.remove(id);
   }
 

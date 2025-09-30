@@ -11,6 +11,5 @@ import { Student } from '../student';
 })
 export class StudentCardComponent {
   student = input.required<Student>()
-  
-  remove = output<number>()
+  remove = output<number | undefined>()
 }
