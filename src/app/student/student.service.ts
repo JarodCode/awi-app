@@ -70,5 +70,11 @@ export class StudentService {
   }
 
   findById(id: number): Student | undefined {
-    return this._students().find(s => s.id===id)}
+    let idOrUndefined = this._students().find(s => s.id===id)
+    if (idOrUndefined == undefined){
+      throw new Error("Error : Student not found");
+    } else {
+      return idOrUndefined;
+    }
+  }
 }

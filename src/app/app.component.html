@@ -1,4 +1,9 @@
-<app-student-list></app-student-list>
-<app-log-viewer></app-log-viewer>
-<app-counter-component></app-counter-component>
+<nav>
+    <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Accueil</a>
+    <a routerLink="about" routerLinkActive="active">A propos</a>
+    <a routerLink="student" routerLinkActive="active">Liste des étudiants</a>
+    <a routerLink="counter" routerLinkActive="active">Compteur</a>
+    <a routerLink="logging" routerLinkActive="active">Logs</a>
+</nav>
+<router-outlet></router-outlet>
 

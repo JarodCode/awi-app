@@ -9,7 +9,7 @@
 <div class="student-list">
   @for (student of this.svc.students(); track student.id) {
     <app-student-card
-      [student]="student"
+      [studentInput]="student"
       (remove)="onDelete($event)"
       (click)="changeSelection(student.id!)">
     </app-student-card>

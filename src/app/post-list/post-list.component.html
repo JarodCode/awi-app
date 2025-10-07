@@ -1,0 +1,6 @@
+@if (posts()) {
+    @for (post of posts(); track posts().id) {
+        <pre>{{ post.title | json }}</pre>
+        <pre>{{ post.body | json }}</pre>
+    }
+}
