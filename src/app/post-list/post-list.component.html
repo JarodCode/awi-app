@@ -1,6 +1,16 @@
-@if (posts()) {
-    @for (post of posts(); track posts().id) {
-        <pre>{{ post.title | json }}</pre>
-        <pre>{{ post.body | json }}</pre>
+<h2>Posts</h2>
+
+<app-post-form (postAdded)="addPost($event)"></app-post-form>
+
+@if (postsGet() === null) {
+  <p>Loading…</p>
+} @else {
+  <ul>
+    @for (p of posts(); track p.id) {
+      <li>
+        <strong>{{ p.title }}</strong><br>
+        {{ p.body }}
+      </li>
     }
+  </ul>
 }

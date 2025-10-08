@@ -1,0 +1,8 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <input type="text" formControlName="title"
+         placeholder="Titre du post" />
+  <textarea formControlName="body"
+            placeholder="Contenu du post" 
+            rows="4"></textarea>
+  <button type="submit" [disabled]="form.invalid">Ajouter</button>
+</form>
