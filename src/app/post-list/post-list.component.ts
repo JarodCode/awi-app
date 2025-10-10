@@ -1,8 +1,7 @@
-import { Component, computed, inject, signal } from '@angular/core';
-import { HttpClient, httpResource } from '@angular/common/http';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, inject } from '@angular/core';
 import { Post } from '../post';
 import { PostFormComponent } from '../post-form/post-form.component';
+import { PostsService } from '../posts.service'
 
 @Component({
   selector: 'app-post-list',
@@ -11,31 +10,9 @@ import { PostFormComponent } from '../post-form/post-form.component';
   styleUrl: './post-list.component.scss'
 })
 export class PostListComponent {
-
-  readonly http = inject(HttpClient)
+  readonly postsService = inject(PostsService)
   
-  // en angular 20, on convertit en signal :
-  postsGet = toSignal(
-  this.http.get<Post[]>('https://jsonplaceholder.typicode.com/posts'),
-  { initialValue: null }
-  ) 
-
-  // readonly posts = httpResource<PostDto[]>(() => (
-  //   {url: 'https://jsonplaceholder.typicode.com/posts'})
-  // )
-
-  postsNew = signal<Post[]>([])
-
-  posts = computed(() => {
-    const existingPosts = this.postsGet() || [];
-    return [...existingPosts, ...this.postsNew()];
-  })
-
-  addPost(post: Post) {
-    this.http.post<Post>('https://jsonplaceholder.typicode.com/posts',
-    post)
-      .subscribe(newPost => {
-        this.postsNew.update(arr => [...arr, newPost])
-    })
-  } 
+  addPost(post: Post): void {
+    this.postsService.add(post)
+  }
 }

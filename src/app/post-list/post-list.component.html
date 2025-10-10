@@ -1,16 +1,8 @@
-<h2>Posts</h2>
-
 <app-post-form (postAdded)="addPost($event)"></app-post-form>
+<div>
+  @for (post of postsService.allPosts(); track post.id) {
+    <div>{{ post.title }}</div>
+  }
+</div>
 
-@if (postsGet() === null) {
-  <p>Loading…</p>
-} @else {
-  <ul>
-    @for (p of posts(); track p.id) {
-      <li>
-        <strong>{{ p.title }}</strong><br>
-        {{ p.body }}
-      </li>
-    }
-  </ul>
-}
+
